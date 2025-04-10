@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Hadamard Encoder with GUI and QR Code Generation - Project Report</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f8f8f8;
+      line-height: 1.6;
+    }
+    header {
+      background: #333;
+      color: #fff;
+      padding: 20px 10%;
+      text-align: center;
+      position: relative;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 24px;
+    }
+    header p {
+      margin: 5px 0;
+      font-size: 16px;
+    }
+    /* Navigation Bar Styling */
+    nav {
+      background: #444;
+      padding: 10px 10%;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    nav ul li {
+      margin: 0 15px;
+    }
+    nav ul li a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 16px;
+      transition: color 0.3s ease;
+    }
+    nav ul li a:hover {
+      color: #ddd;
+    }
+    /* Container styling for the report content */
+    .container {
+      max-width: 900px;
+      margin: 20px auto;
+      padding: 20px;
+      background: #fff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    h2 {
+      border-bottom: 2px solid #ccc;
+      padding-bottom: 5px;
+      color: #333;
+    }
+    h3 {
+      color: #555;
+    }
+    section {
+      margin-bottom: 30px;
+    }
+    a {
+      color: #0066cc;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #333;
+      color: #fff;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Hadamard Encoder with GUI and QR Code Generation<br>(Coding Theory and Cryptography)</h1>
+    <p>Submitted by: Aditya (2203301) and Prithvi Raj (2203316)</p>
+    <p>Indian Institute of Technology Goa</p>
+    <p>Under the guidance of: Prof. Rahul CS</p>
+    <p>April 10, 2025</p>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="#introduction">Introduction</a></li>
+      <li><a href="#objective">Objective</a></li>
+      <li><a href="#tools">Tools & Technologies</a></li>
+      <li><a href="#system-design">System Design</a></li>
+      <li><a href="#experimental-setup">Experimental Setup</a></li>
+      <li><a href="#results">Results</a></li>
+      <li><a href="#applications">Applications</a></li>
+      <li><a href="#conclusion">Conclusion</a></li>
+      <li><a href="#references">References</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <section id="introduction">
+      <h2>1. Introduction</h2>
+      <p>
+        Hadamard codes are binary error-correcting codes known for their large minimum Hamming distance, making them ideal for robust transmission over noisy channels. This project implements a Hadamard encoder with support for text and image inputs and outputs encoded data in the form of scannable QR codes.
+      </p>
+      <p>
+        The encoder uses the extended Hadamard code of the form [2<sub>r</sub>, r + 1, 2<sub>r−1</sub>]<sup>2</sup>, and can work both with small parameters (e.g., [16, 5, 8]<sup>2</sup>) suitable for hardware/breadboard implementation or larger parameters for software demonstrations.
+      </p>
+    </section>
+
+    <section id="objective">
+      <h2>2. Objective</h2>
+      <p>
+        To build a flexible Hadamard encoder capable of encoding binary messages, text, and images into extended Hadamard codewords, and visualizing the output using QR codes. The system should support GUI-based interaction and allow user-specified parameters such as r for encoding size.
+      </p>
+    </section>
+
+    <section id="tools">
+      <h2>3. Tools and Technologies Used</h2>
+      <ul>
+        <li>Language: Python 3</li>
+        <li>Matrix Operations: NumPy</li>
+        <li>Image Processing: OpenCV (cv2)</li>
+        <li>QR Code Generation: qrcode (Python Library)</li>
+        <li>GUI Support: Web based</li>
+        <li>File Handling: os, uuid</li>
+        <li>Image Formats: PNG, JPEG (via Pillow)</li>
+        <li>Pandas: For handling data and generating CSV/Excel outputs</li>
+        <li>JSON: For handling data transfer and encoding formats</li>
+        <li>ReportLab: For generating PDF downloads</li>
+      </ul>
+    </section>
+
+    <section id="system-design">
+      <h2>4. System Design</h2>
+      <h3>Hadamard Encoder Class</h3>
+      <p>
+        The class <code>HadamardEncoder(K)</code> constructs an encoder that maps messages from 0 to 2<sup>K</sup> − 1 into codewords of length 2<sup>K−1</sup> using a parity-based method. Each message bit is encoded into a binary vector of +1/−1, then mapped to 1/0 for digital storage.
+      </p>
+      <h3>Encoding Functions</h3>
+      <ul>
+        <li><strong>encode text string:</strong> Encodes text using ASCII values.</li>
+        <li><strong>encode binary string:</strong> Encodes binary strings bit-by-bit.</li>
+        <li><strong>encode image:</strong> Encodes images by treating each pixel as a message.</li>
+      </ul>
+      <h3>QR Code Generation</h3>
+      <ul>
+        <li>QR code size is dynamically adjusted to fit the encoded binary string.</li>
+        <li><strong>generate qr:</strong> Saves each QR code as a PNG image.</li>
+        <li><strong>process data into qrcodes:</strong> Splits long data into multiple QR codes.</li>
+      </ul>
+    </section>
+
+    <section id="experimental-setup">
+      <h2>5. Experimental Setup</h2>
+      <h3>Case A: Text Input</h3>
+      <ul>
+        <li>Input: Any Text</li>
+        <li>K = 8 (allows ASCII range 0–255)</li>
+        <li>Result: Sequence of Hadamard-encoded binary chunks</li>
+        <li>Output: Multiple QR codes for the encoded message</li>
+      </ul>
+      <h3>Case B: Image Input</h3>
+      <ul>
+        <li>Input: Image (e.g., 100×100)</li>
+        <li>Each pixel is treated as a message and encoded</li>
+        <li>Output: Encoded NumPy array and QR visualizations</li>
+      </ul>
+    </section>
+
+    <section id="results">
+      <h2>6. Results</h2>
+      <ul>
+        <li>Successful encoding of text and images using Hadamard codes.</li>
+        <li>Output fits within dynamically-sized QR codes.</li>
+        <li>Modular code design supports future GUI expansion.</li>
+        <li>Encoder parameterizable by K for various use cases.</li>
+      </ul>
+    </section>
+
+    <section id="applications">
+      <h2>7. Applications</h2>
+      <ul>
+        <li>Error-resistant data transmission.</li>
+        <li>Secure QR-based file sharing.</li>
+        <li>Embedded systems encoding.</li>
+        <li>Education and demonstration of coding theory.</li>
+      </ul>
+    </section>
+
+    <section id="conclusion">
+      <h2>8. Conclusion</h2>
+      <p>
+        This project demonstrates the construction of a Hadamard encoder capable of transforming text and image data into highly redundant, QR-encoded output. By supporting modular input and QR output, this encoder offers both theoretical learning value and practical robustness, with clear room for feature expansion.
+      </p>
+    </section>
+
+    <section id="references">
+      <h2>9. References</h2>
+      <h3>Bibliography</h3>
+      <ul>
+        <li>[1] CS425 Notes, Instructor: Dr. Rahul CS, Indian Institute of Technology Goa.</li>
+        <li>[2] <a href="https://youtube.com/playlist?list=PLDu0JgProGz7qcN66T6-pe5627k0oUSH9" target="_blank">YouTube Playlist</a></li>
+      </ul>
+    </section>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Indian Institute of Technology Goa</p>
+  </footer>
+</body>
+</html>

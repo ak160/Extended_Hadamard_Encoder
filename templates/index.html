@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Extended Hadamard Encoder</title>
+  <!-- Link to external CSS file -->
+  <link rel="stylesheet" href="/static/style.css">
+  <!-- Animate.css for simple animations -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+</head>
+<body>
+  <!-- Canvas element for the 3D animated background -->
+  <canvas id="bgCanvas"></canvas>
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="/" class="nav-logo">Hadamard Encoder</a>
+      <ul class="nav-menu">
+        <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
+        <li class="nav-item"><a href="/report" class="nav-link">Report</a></li>
+        <!-- Add more links as needed -->
+      </ul>
+    </div>
+  </nav>
+  <!-- Main container for the application content -->
+  <div class="container">
+    <!-- Input Options Box -->
+    <div class="box animate__animated animate__fadeInDown">
+      <h2>Extended Hadamard Encoder</h2>
+      <div style="display: flex; align-items: center; gap: 20px;">
+        <!-- Radio Options -->
+        <label class="option">
+          <input type="radio" name="inputOption" value="text" checked> Text Input
+        </label>
+        <label class="option">
+          <input type="radio" name="inputOption" value="image"> Upload Image
+        </label>
+        <!-- K input field placed next to the radio options -->
+        <label class="option" style="display: flex; align-items: center;">
+          K:
+          <input type="number" id="kInput" value="8" min="3" max="12" style="width:60px; margin-left: 5px;">
+        </label>
+      </div>
+      
+      <!-- Text input area -->
+      <div id="textInputDiv" style="margin-top:20px;">
+        <textarea id="textInput" placeholder="Enter your text here..." rows="4" style="width:100%;"></textarea>
+      </div>
+      <!-- Image upload input (shows when 'Upload Image' is selected) -->
+      <div id="imageUploadDiv" class="hidden" style="margin-top:20px;">
+        <input type="file" id="imageInput" accept="image/*">
+      </div>
+      <button id="encodeButton" class="button">Encode</button>
+    </div>
+    
+    <!-- Encoded Message Section -->
+    <div id="encodedSection" class="box animate__animated animate__fadeInUp hidden">
+      <h3>Encoded Message</h3>
+      <textarea id="encodedMessage" rows="4" style="width:70%;" readonly></textarea>
+      <div class="download-buttons" style="display:inline-block; vertical-align: top; margin-left: 10px;">
+        <button class="button" onclick="downloadFile('excel')">Excel</button>
+        <button class="button" onclick="downloadFile('csv')">CSV</button>
+        <button class="button" onclick="downloadFile('pdf')">PDF</button>
+      </div>
+    </div>
+    
+    <!-- QR Code Section -->
+    <div id="qrSection" class="box animate__animated animate__fadeInUp hidden">
+      <h3>QR Code</h3>
+      <div id="qrcode" class="qrcode"></div>
+      <div class="download-buttons">
+        <button class="button" onclick="downloadQRCode('jpeg')">Download JPEG</button>
+        <button class="button" onclick="downloadQRCode('png')">Download PNG</button>
+        <button class="button" onclick="downloadQRCode('pdf')">Download PDF</button>
+      </div>
+    </div>
+    
+    <!-- Error Detection Section -->
+    <div id="errorDetectionSection" class="box animate__animated animate__fadeInUp hidden">
+      <h3>Error Detection</h3>
+      <div class="error-section">
+        <div class="error-box">
+          <h4>Encoded Data with Error</h4>
+          <textarea id="errorData" rows="4" style="width:100%;" readonly></textarea>
+        </div>
+        <div class="error-box">
+          <h4>Decoded Data</h4>
+          <textarea id="decodedData" rows="4" style="width:100%;" readonly></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer></footer>
+  <!-- Include Three.js library for 3D animations -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <!-- Include QRCode.js library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <!-- Link to external JavaScript files -->
+  <script src="/static/script.js"></script>
+  <script src="/static/downloads.js"></script>
+</body>
+</html>

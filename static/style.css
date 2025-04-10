@@ -1,0 +1,222 @@
+/* Set up a full-screen canvas with an animated gradient background */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+/* Navigation Bar Styles */
+.navbar {
+  background: rgba(0, 0, 0, 0.7);
+  padding: 10px 20px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100; /* Above canvas and main container */
+}
+
+.nav-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #fff;
+}
+
+.nav-logo {
+  font-size: 20px;
+  font-weight: bold;
+  color: #fff;
+  text-decoration: none;
+}
+
+.nav-menu {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-item {
+  margin-left: 20px;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: #fff;
+  font-size: 16px;
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #ddd;
+}
+
+/* Adjust main container top margin to account for fixed navbar */
+.container {
+  margin-top: 80px; /* Increase if needed */
+}
+
+/* Animated background */
+@keyframes gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* 3D background canvas */
+#bgCanvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+/* Main container */
+.container {
+  position: relative;
+  z-index: 1;
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+/* Stylish content boxes */
+.box {
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 12px;
+  padding: 25px;
+  margin-bottom: 30px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(6px);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.box:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+/* Hide utility */
+.hidden {
+  display: none;
+}
+
+/* Enhanced buttons */
+.button {
+  background: #007BFF;
+  color: #fff;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 10px;
+  font-size: 16px;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.button:hover {
+  background: #0056b3;
+  transform: scale(1.02);
+}
+
+/* Radio labels */
+.option {
+  margin-right: 20px;
+  font-size: 16px;
+}
+
+/* Download buttons */
+.download-buttons {
+  margin-top: 10px;
+}
+
+.download-buttons button {
+  margin-right: 10px;
+}
+
+/* QR Code styling */
+.qrcode {
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* Inputs and textarea styling */
+textarea,
+input[type="text"],
+input[type="file"] {
+  width: 100%;
+  padding: 12px 16px;
+  margin-top: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: border 0.3s ease, box-shadow 0.3s ease;
+  background-color: #f9f9f9;
+  box-sizing: border-box;
+}
+
+textarea:focus,
+input[type="text"]:focus {
+  outline: none;
+  border-color: #007BFF;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.2);
+  background-color: #fff;
+}
+
+/* File input as stylish button */
+input[type="file"] {
+  padding: 10px;
+  background-color: #92979337;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 15px;
+  transition: background 0.3s ease;
+}
+
+input[type="file"]::file-selector-button {
+  background: #6de689;
+  color: #fdfdfd;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  font-size: 15px;
+}
+
+input[type="file"]::file-selector-button:hover {
+  background: #218838;
+}
+
+/* Error section */
+.error-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.error-box {
+  width: 48%;
+  background: #ffe6e6;
+  padding: 15px;
+  border: 1px solid #ff0000;
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+
+/* Responsive for small screens */
+@media screen and (max-width: 768px) {
+  .error-box {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+}

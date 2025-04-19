@@ -11,7 +11,7 @@ This project is a web application that encodes text and black & white images usi
 -  QR Code Generation: Encoded data is visualized as QR codes.
 
 - Note ``K`` ≥ 7 for image encoding.
-- 
+  
 # 🛠️ Tech Stack
 - Frontend: HTML, CSS, JavaScript .
 - Backend: Python (Flask) .

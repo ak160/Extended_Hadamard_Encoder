@@ -26,8 +26,8 @@ This project is a web application that encodes text and black & white images usi
 # Installation 
 ```bash
 git clone https://github.com/ak160/Extended_Hadamard_Encoder.git
-cd hadamard-encoder-web
-pip install -r requirements.txt
+cd hadamard
+pip install -r requirement.txt
 python app.py
 ```
 # How It Works

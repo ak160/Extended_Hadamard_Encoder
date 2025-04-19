@@ -25,7 +25,7 @@ This project is a web application that encodes text and black & white images usi
   - PIL (Image handling)
 # Installation 
 ```bash
-git clone https://github.com/your-username/hadamard-encoder-web.git
+git clone https://github.com/ak160/Extended_Hadamard_Encoder.git
 cd hadamard-encoder-web
 pip install -r requirements.txt
 python app.py

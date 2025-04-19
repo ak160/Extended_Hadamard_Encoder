@@ -11,7 +11,8 @@ This project is a web application that encodes text and black & white images usi
 -  QR Code Generation: Encoded data is visualized as QR codes.
 
 - Note ``K`` ≥ 7 for image encoding.
-  
+# Demo 
+[Encoder](https://hadamardencode2.onrender.com/)
 # 🛠️ Tech Stack
 - Frontend: HTML, CSS, JavaScript .
 - Backend: Python (Flask) .
